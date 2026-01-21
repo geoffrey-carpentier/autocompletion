@@ -1,0 +1,30 @@
+/* Conteneur principal qui prend toute la hauteur de l'écran */
+.home-container {
+  display: flex; /* Active Flexbox pour centrage */
+  flex-direction: column; /* Éléments les uns sous les autres */
+  justify-content: center; /* Centrage vertical */
+  align-items: center; /* Centrage horizontal */
+  min-height: 100vh; /* 100% de la hauteur de la fenêtre (Viewport Height) */
+  background-color: #f8f9fa; /* Fond gris très clair style Google */
+  font-family: Arial, sans-serif;
+}
+
+.main-title {
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.blue { color: #4285f4; }
+.orange { color: #fbbc05; }
+
+.subtitle {
+  color: #5f6368;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.search-wrapper {
+  width: 100%;
+  max-width: 600px; /* Largeur max pour ne pas être trop large sur grand écran */
+  padding: 0 20px;
+}
