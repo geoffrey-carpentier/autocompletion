@@ -1,7 +1,137 @@
-/* global styles for RecipeDetail page */
+/* style général pour la page 'détail' (RecipeDetail) */
 .recipe-detail {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
+}
+
+
+.detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 20px;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.back-btn:hover {
+  color: #fbbc05;
+}
+
+/* En-tête avec image + titre */
+.recipe-header {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.detail-img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.header-info h1 {
+  font-size: 2.5rem;
+  margin: 0 0 20px 0;
+  color: #202124;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+}
+
+.tag {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.tag.category {
+  background-color: #ffe0b2; 
+  color: #e65100;
+}
+
+.tag.area {
+  background-color: #e1f5fe; 
+  color: #01579b;
+}
+
+/* Contenu principal : split en 2 colonnes sur desktop */
+.recipe-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Ingrédients: 1/3, Instructions: 2/3 */
+  gap: 40px;
+}
+
+/* Liste des ingrédients style "Tableau" */
+.ingredients-section {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.ingredients-section h2, .instructions-section h2 {
+  margin-top: 0;
+  color: #fbbc05; /* Titres en orange */
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredients-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.ingredients-list li:last-child {
+  border-bottom: none;
+}
+
+.measure {
+  font-weight: bold;
+  color: #555;
+}
+
+.instructions-text {
+  line-height: 1.8; /* dispo texte confortable */
+  white-space: pre-line; /* Conserve les sauts de ligne depuis l'API */
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .recipe-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .recipe-content {
+    grid-template-columns: 1fr;
+  }
 }
