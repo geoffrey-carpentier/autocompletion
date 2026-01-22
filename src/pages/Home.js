@@ -22,7 +22,7 @@ export default function Home() {
     <div className="home-container">
       {/* Logo / Titre principal */}
       <h1 className="main-title">
-        <span className="blue">Miam</span><span className="orange">Miam</span>
+        <span className="blue">Good</span><span className="orange">Food</span>
       </h1>
       
       {/* Sous-titre */}

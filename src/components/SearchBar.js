@@ -9,7 +9,7 @@ export default function SearchBar() {
   // 2. Hook pour permettre la navigation (redirection) sans recharger la page
   const navigate = useNavigate();
 
-  // Fonction appelée quand l'utilisateur soumet le formulaire (Entrée ou clic bouton)
+  // Fonction appelée quand l'utilisateur soumet le formulaire (Entrée ou clic sur bouton)
   const handleSubmit = (e) => {
     e.preventDefault(); // Empêche le rechargement complet de la page (comportement par défaut HTML)
 
@@ -29,7 +29,7 @@ export default function SearchBar() {
         className="search-input"
         placeholder="Rechercher une recette..."
         value={term}
-        // À chaque frappe, on met à jour l'état "term"
+        // À chaque appui sur une touche, on met à jour l'état "term"
         onChange={(e) => setTerm(e.target.value)}
       />
       <button type="submit" className="search-button">
