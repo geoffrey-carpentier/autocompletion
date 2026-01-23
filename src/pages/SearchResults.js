@@ -4,37 +4,37 @@ import './SearchResults.css';
 
 // Composant de la Page de Résultats (SearchResults)
 export default function SearchResults() {
-    // 1. Récupération du paramètre 'q' dans l'URL (?q=...)
-    const [searchParams] = useSearchParams();
-    const query = searchParams.get('q');
+  // Récupération du paramètre 'q' de l'URL (?q=...)
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('q');
 
-    // 2. Etats pour gérer les données et l'interface
-    const [recipes, setRecipes] = useState([]);     // Stocke la liste des recettes récupérées
-    const [loading, setLoading] = useState(false);  // Gère l'affichage du chargement
-    const [error, setError] = useState(null);       // Gère les erreurs éventuelles
+  // 2. Etats pour gérer les données et l'interface
+  const [recipes, setRecipes] = useState([]);     // Stocke la liste des recettes récupérées
+  const [loading, setLoading] = useState(false);  // Gère l'affichage du chargement
+  const [error, setError] = useState(null);       // Gère les erreurs éventuelles
 
-    // 3. useEffect : Se déclenche pour lancer la recherche à chaque changement de 'query'
-    useEffect(() => {       // fonction flechée p
-        // Si aucune requête, alors on ne fait rien
-        if (!query) return;
+  // 3. useEffect : Se déclenche pour lancer la recherche à chaque changement de 'query'
+  useEffect(() => {
+    // Si aucune requête, alors on ne fait rien
+    if (!query) return;
 
-        const fetchRecipes = async () => {
-            setLoading(true); // Début du chargement
-            setError(null);   // Reset des erreurs
-      
-        try {
-            // Appel à l'API TheMealDB [cite: 5]
-            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
-            const data = await response.json();
+    const fetchRecipes = async () => {
+      setLoading(true); // Début du chargement
+      setError(null);   // Reset des erreurs
 
-            // L'API renvoie "meals": null si rien n'est trouvé, on gère ce cas avec || []
-            setRecipes(data.meals || []); 
-        }   catch (err) {
-            console.error("Erreur API:", err);
-            setError("Une erreur est survenue lors de la récupération des recettes.");
-        }   finally {
-            setLoading(false); // Fin du chargement (succès ou échec)
-        }
+      try {
+        // Appel à l'API TheMealDB 
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+        const data = await response.json();
+
+        // L'API renvoie "meals": null si rien n'est trouvé, on gère ce cas avec || []
+        setRecipes(data.meals || []);
+      } catch (err) {
+        console.error("Erreur API:", err);
+        setError("Une erreur est survenue lors de la récupération des recettes.");
+      } finally {
+        setLoading(false); // Fin du chargement (succès ou échec)
+      }
     };
 
     fetchRecipes();
@@ -60,10 +60,10 @@ export default function SearchResults() {
       {/* Affichage de la grille de résultats */}
       <div className="recipes-grid">
         {recipes.map((meal) => (
-          // Link permet de cliquer sur une carte pour aller vers les détails de la recette
+          // Link: permet de cliquer sur une carte pour aller vers les détails de la recette
           <Link to={`/recipe/${meal.idMeal}`} key={meal.idMeal} className="recipe-card">
             <div className="card-image-container">
-                <img src={meal.strMealThumb} alt={meal.strMeal} loading="lazy" />
+              <img src={meal.strMealThumb} alt={meal.strMeal} loading="lazy" />
             </div>
             <div className="card-info">
               <h3>{meal.strMeal}</h3>
