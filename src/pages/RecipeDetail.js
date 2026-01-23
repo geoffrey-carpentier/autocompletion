@@ -1,17 +1,3 @@
-/*
-// import React from 'react';
-// import './RecipeDetail.css';
-
-// // Composant de la Page de Détails d'une recette (RecipeDetail)
-// export default function RecipeDetail() {
-//   return (
-//     <div className="recipe-detail">
-//       <h1>Détails de la recette</h1>
-//       <p>Les instructions, ingrédients et détails seront ici.</p>
-//     </div>
-//   );
-// }
-*/
 //! Composant de la Page de Détails d'une recette
 
 import React, { useState, useEffect } from 'react';
@@ -24,7 +10,7 @@ export default function RecipeDetail() {
   
   const [recipe, setRecipe] = useState(null); // État pour stocker les détails de la recette
   const [loading, setLoading] = useState(true); // État pour la gestion du chargement
-
+  const [error, setError] = useState(null); // État pour la gestion des erreurs
   // Fonction utilitaire pour récupérer les ingrédients et mesures
   const getIngredients = (meal) => {
     const ingredients = [];
@@ -37,7 +23,7 @@ export default function RecipeDetail() {
       if (ingredient && ingredient.trim()) {
         ingredients.push({
           name: ingredient,
-          measure: measure
+          measure: measure || ''
         });
       }
     }
@@ -46,15 +32,28 @@ export default function RecipeDetail() {
 
   useEffect(() => {
     const fetchRecipeDetail = async () => {
+      setLoading(true);
+      setError(null);
+      
       try {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+        const response = await fetch(
+          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+        );
+        
+        if (!response.ok) {
+          throw new Error('Erreur réseau');
+        }
+        
         const data = await response.json();
         
         if (data.meals) {
-          setRecipe(data.meals[0]); // L'API renvoie un tableau, on prend le premier élément
+          setRecipe(data.meals[0]);// L'API renvoie un tableau, on prend le premier élément
+        } else {
+          setError('Recette introuvable');
         }
-      } catch (error) {
-        console.error("Erreur de chargement:", error);
+      } catch (err) {
+        console.error("Erreur de chargement:", err);
+        setError("Erreur lors du chargement de la recette");
       } finally {
         setLoading(false);
       }
@@ -63,7 +62,8 @@ export default function RecipeDetail() {
     fetchRecipeDetail();
   }, [id]);
 
-  if (loading) return <div className="loader">Chargement des détails...</div>;
+  if (loading) return <div className="loader" role="status">Chargement des détails...</div>;
+  if (error) return <div className="error" role="alert">{error}</div>;
   if (!recipe) return <div className="error">Recette introuvable.</div>;
 
   const ingredients = getIngredients(recipe);
@@ -71,7 +71,11 @@ export default function RecipeDetail() {
   return (
     <div className="detail-container">
       {/* Bouton retour */}
-      <button onClick={() => navigate(-1)} className="back-btn">
+      <button 
+        onClick={() => navigate(-1)} 
+        className="back-btn"
+        aria-label="Retour à la page précédente"
+      >
         ← Retour aux résultats
       </button>
 

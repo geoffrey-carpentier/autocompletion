@@ -13,7 +13,7 @@ export default function SearchBar() {
   const navigate = useNavigate();
 
   //  ALGORITHME DE TRI POUR LES SUGGESTIONS
-  const filterSuggestions = (meals, query) => { 
+  const filterSuggestions = (meals, query) => {
     if (!meals) return { startsWith: [], contains: [] }; // Si pas de recette, on retourne des listes vides
 
     const lowerQuery = query.toLowerCase(); // Comparaison insensible à la casse
