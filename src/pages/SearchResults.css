@@ -64,10 +64,28 @@
   color: #202124;
 }
 
+/* Nouveau conteneur pour aligner les tags */
+.card-tags {
+  display: flex;
+  gap: 8px; /* Espace entre les tags */
+  flex-wrap: wrap;
+}
+
 .category-tag {
   display: inline-block;
-  background-color: #e8f0fe;
-  color: #1967d2;
+  background-color: #e8f0fe; /* Fond bleu clair */
+  color: #1967d2; /* Texte bleu */
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Style pour le nouveau tag Area */
+.area-tag {
+  display: inline-block;
+  background-color: #fce8e6; /* Fond rouge clair (optionnel, ou vert #e6f4ea) */
+  color: #c5221f; /* Texte rouge */
   padding: 4px 12px;
   border-radius: 16px;
   font-size: 0.85rem;

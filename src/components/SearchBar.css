@@ -1,61 +1,99 @@
 /* Wrapper pour positionner la liste par rapport à la barre */
 .search-bar-wrapper {
-  position: relative; /* Indispensable pour le position absolute des enfants */
+  position: relative;
   width: 100%;
 }
 
 .search-bar-container {
   display: flex;
-  box-shadow: 10 1px 6px rgba(32,33,36,.28);  /* Ombre portée 'Google style' */
-  border-radius: 24px; /* Arrondi complet */
+  align-items: center;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); /* ✅ CORRIGÉ */
+  border-radius: 24px;
   background: white;
   transition: box-shadow 0.3s;
   z-index: 10;
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden; */
+  /* Pas d'overflow hidden global sinon l'ombre peut être coupée, 
+     mais on gère les enfants pour qu'ils ne dépassent pas */
 }
 
 .search-bar-container:hover {
-  box-shadow: 0 1px 6px rgba(32,33,36,.40);
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.4);
 }
 
 .search-bar-container:focus-within {
-  box-shadow: 0 5px 15px hwb(23 1% 17% / 0.5);
+  box-shadow: 0 5px 15px rgba(251, 188, 5, 0.5); /* ✅ hwb → rgba */
 }
 
 /* Si les suggestions sont ouvertes, on change l'arrondi du bas */
 .search-bar-wrapper:has(.suggestions-dropdown) .search-bar-container {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  box-shadow: 0 5px 15px hwb(23 1% 17% / 0.5);
-
+  box-shadow: 0 5px 12px rgba(251, 188, 5, 0.5); 
+}
+/* Icônes */
+.icon-left {
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* L'icône ne doit pas rétrécir */
 }
 
 .search-input {
-  flex-grow: 1;  /* L'input prend toute la place disponible */
+  flex-grow: 1; /* Prend tout l'espace libre */
   border: none;
-  padding: 12px 20px;
+  padding: 12px 10px;
   font-size: 16px;
   outline: none;  /* Enlève le contour bleu par défaut */
-  border-radius: 24px 0 0 24px;
+  background: transparent;
+  min-width: 0; /* Important pour flexbox */
+  /* border-radius: 24px 0 0 24px; */
+}
+
+/* Conteneur du loader */
+.icon-right {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; /* Espace avant le bouton */
+  flex-shrink: 0; /* Ne doit pas être écrasé */
+}
+/* Animation Loader */
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .search-button {
   background-color: #fbbc05;
   border: none;
-  padding: 0 20px;
+  padding: 0 24px; /* Un peu plus large pour le style */
+  height: 46px; /* Hauteur forcée pour matcher le conteneur */
   cursor: pointer;
   font-weight: bold;
   color: white;
-  border-radius: 0 24px 24px 0;
-  transition: background-color 0.3s;
+  border-radius: 0 24px 24px 0; /* Arrondi seulement à droite */
+  flex-shrink: 0; /* Le bouton garde sa taille */
+  transition: background-color 0.2s;
 }
 
 .search-button:hover {
   background-color: #c88f00;
 }
-
 /* --- SUGGESTIONS DROPDOWN --- */
+
 .suggestions-dropdown {
   position: absolute;
   top: 100%; /* Juste sous la barre */
@@ -64,7 +102,7 @@
   background: white;
   border-top: 1px solid #eee;
   border-radius: 0 0 24px 24px; /* Arrondi en bas seulement */
-  box-shadow: 0 4px 6px rgba(32,33,36,.28);
+  box-shadow: 0 4px 6px rgba(32, 33, 36, 0.28);
   z-index: 5;
   padding-bottom: 10px;
   overflow: hidden;
@@ -72,7 +110,7 @@
 
 .group-title {
   font-size: 0.75rem;
-  color: #1967d2; /* Bleu Google */
+  color: #1967d2;
   padding: 10px 20px 5px;
   font-weight: bold;
   text-transform: uppercase;
@@ -85,6 +123,12 @@
   margin: 5px 0;
 }
 
+.suggestion-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .suggestion-item {
   padding: 8px 20px;
   cursor: pointer;
@@ -92,19 +136,30 @@
   align-items: center;
   gap: 10px;
   color: #202124;
+  transition: background-color 0.1s;
 }
 
-.suggestion-item:hover {
+.suggestion-item:hover,
+.suggestion-item.selected {
   background-color: #eee;
 }
 
 .suggestion-item.selected {
-  background-color: #eee; 
-  border-left: 4px solid #fbbc05;
+  border-left: 3px solid #fbbc05;
 }
+
 .thumb-mini {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
   object-fit: cover;
+}
+
+.suggestion-text {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -84,7 +84,13 @@ export default function SearchResults() {
             </div>
             <div className="card-info">
               <h3>{meal.strMeal}</h3>
-              <span className="category-tag">{meal.strCategory}</span>
+             {/* Conteneur des tags */}
+              <div className="card-tags">
+                {/* tag Category */}
+                <span className="category-tag">{meal.strCategory}</span>
+                {/* tag Area */}
+                <span className="area-tag">{meal.strArea}</span>
+              </div>
             </div>
           </Link>
         ))}

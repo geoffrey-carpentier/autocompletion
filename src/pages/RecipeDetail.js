@@ -23,7 +23,7 @@ export default function RecipeDetail() {
       if (ingredient && ingredient.trim()) {
         ingredients.push({
           name: ingredient,
-          measure: measure || ''
+          measure: measure || '' // La mesure peut être vide
         });
       }
     }

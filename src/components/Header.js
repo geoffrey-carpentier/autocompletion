@@ -1,21 +1,35 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import SearchBar from './SearchBar'; // On importe la barre
 import './Header.css';
 
 export default function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  // Ne pas afficher le header sur la page d'accueil
+  // Si on est sur l'accueil, on ne montre pas ce header (car il y a déjà la grosse barre au centre)
   if (isHomePage) return null;
 
   return (
     <header className="app-header">
-      <Link to="/" className="logo-link">
-        <h1 className="header-title">
+      <div className="header-content">
+        {/* Logo à gauche */}
+        <Link to="/" className="logo-link">
           <span className="blue">Good</span><span className="orange">Food</span>
-        </h1>
-      </Link>
+        </Link>
+        
+        {/* Barre de recherche au centre/droite */}
+        <div className="header-search">
+          <SearchBar />
+        </div>
+      </div>
     </header>
   );
 }
+
+
+
+
+
+ 
+
