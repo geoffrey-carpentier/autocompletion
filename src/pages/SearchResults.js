@@ -24,7 +24,7 @@ export default function SearchResults() {
     try {
       // Appel à l'API TheMealDB 
       const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}`
       );
       
       if (!response.ok) {
