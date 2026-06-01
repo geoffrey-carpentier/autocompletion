@@ -81,10 +81,10 @@ export default function SearchBar() {
   // --- GESTION CLAVIER ---
 
   const handleSuggestionClick = (mealName) => {
-    skipNextSearch.current = true; // IMPORTANT : On bloque la prochaine recherche auto
+    skipNextSearch.current = mealName !== term; // IMPORTANT : On bloque la prochaine recherche auto uniquement si le terme change
     setTerm(mealName);             // On met à jour l'input pour faire joli
     setShowSuggestions(false);     // On ferme force le menu
-    navigate(`/search?q=${mealName}`);
+    navigate(`/search?q=${encodeURIComponent(mealName)}`);
   };
 
   const handleSubmit = (e) => {
