@@ -25,8 +25,12 @@
   white-space: nowrap; /* Empêche le logo de passer à la ligne */
 }
 
-.blue { color: #4285f4; }
-.orange { color: #fbbc05; }
+.blue {
+  color: #4285f4;
+}
+.orange {
+  color: #fbbc05;
+}
 
 .header-search {
   flex-grow: 1;
@@ -38,6 +42,9 @@
   .header-content {
     flex-direction: column;
     gap: 15px;
+  }
+  .logo-link {
+    display: none; /* Hide logo on small screens */
   }
   .header-search {
     width: 100%;
