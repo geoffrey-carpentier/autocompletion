@@ -4,6 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './RecipeDetail.css';
 
+/**
+ * Render the recipe detail page for the recipe id in the URL, fetching data from TheMealDB and displaying loading, error, or the recipe (image, metadata, ingredients, and instructions).
+ * @returns {JSX.Element} The rendered recipe detail view, or a loading/error message element.
+ */
 export default function RecipeDetail() {
   const { id } = useParams(); // Récupère l'ID depuis l'URL (ex: 52772)
   const navigate = useNavigate(); // Pour le bouton "Retour"

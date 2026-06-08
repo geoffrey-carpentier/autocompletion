@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
 
+/**
+ * Render a search bar with debounced MealDB-backed autocomplete suggestions, keyboard navigation, and navigation to the search results page when submitting or selecting a suggestion.
+ *
+ * The component manages the input term, two suggestion groups ("starts with" and "contains"), dropdown visibility, a selected index for keyboard navigation, and a loading indicator. It fetches suggestions after a short debounce when the term has at least two characters, allows selection via mouse or keyboard (ArrowUp/Down, Enter, Escape), and navigates to `/search?q=...` on selection or form submit.
+ *
+ * @returns {JSX.Element} A SearchBar React element containing the input, optional loading spinner, and a grouped suggestions dropdown.
 export default function SearchBar() {
   const [term, setTerm] = useState('');
   const [suggestions, setSuggestions] = useState({ startsWith: [], contains: [] });
