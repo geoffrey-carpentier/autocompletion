@@ -2,7 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import './SearchResults.css';
 
-// Composant de la Page de Résultats (SearchResults)
+/**
+ * Render search results for recipes read from the `q` URL query, including loading, error, empty-state, and a grid of linked recipe cards.
+ * @returns {JSX.Element} A React element containing the search results UI: title with the query, loading and error messages, a no-results message when applicable, and a grid of recipe cards linking to detail pages.
+ */
 export default function SearchResults() {
   // Récupération du paramètre 'q' de l'URL (?q=...)
   const [searchParams] = useSearchParams();

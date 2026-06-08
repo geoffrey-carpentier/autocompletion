@@ -9,6 +9,10 @@ import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
 import RecipeDetail from './pages/RecipeDetail';
 
+/**
+ * Root React component that provides the application's global layout and client-side routing.
+ * @returns {JSX.Element} The app's JSX element containing a BrowserRouter with a global Header and configured Routes for "/", "/search", and "/recipe/:id".
+ */
 function App() {
   return (
     // BrowserRouter englobe toute l'application pour activer le routage
