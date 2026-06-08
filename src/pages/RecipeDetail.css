@@ -153,9 +153,12 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+`@media` (max-width: 768px) {
   .recipe-header {
     grid-template-columns: 1fr; /* Une seule colonne */
+  }
+  .recipe-content {
+    grid-template-columns: 1fr;
   }
   .detail-img {
     height: 250px;
