@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# GoodFood - Recherche de Recettes avec Autocomplétion 🍳
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Un projet React de moteur de recherche de recettes de cuisine basé sur l'API publique gratuite **TheMealDB**. Ce projet met particulièrement l'accent sur le développement d'une fonctionnalité d'**autocomplétion intelligente** et sur l'expérience utilisateur (UX) lors de la saisie.
 
-## Available Scripts
+## 🌟 Fonctionnalités
 
-In the project directory, you can run:
+- **Autocomplétion Intelligente** : Les suggestions sont divisées en deux catégories pour plus de pertinence :
+  1. Les recettes commençant exactement par la frappe de l'utilisateur.
+  2. Les recettes contenant la frappe, n'importe où dans le nom.
+- **Optimisation des performances (Debounce)** : Un délai (*debounce* de 300ms) est appliqué sur l'input pour éviter de surcharger l'API à chaque caractère tapé.
+- **Navigation au clavier** : Possibilité de naviguer dans les suggestions avec les flèches haut/bas, de valider avec `Entrée`, et de fermer la liste avec `Échap`.
+- **Routage Dynamique** : Navigation fluide côté client via `react-router-dom` (Page d'accueil, Page de résultats de recherche, Page de détails de la recette).
+- **Détails Complets** : Affichage des instructions, des images, et combinaison dynamique des ingrédients avec leurs mesures exactes.
 
-### `npm start`
+## 🛠️ Stack Technique
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend** : React 19 (Initialisé via Create React App)
+- **Routage** : React Router DOM (v7)
+- **Requêtes API** : Fetch API (Native)
+- **Gestion d'état** : Hooks React (`useState`, `useEffect`)
+- **API Distante** : [TheMealDB](https://www.themealdb.com/api.php)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Installation et Lancement local
 
-### `npm test`
+### Prérequis
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Node.js](https://nodejs.org/) (et son gestionnaire NPM) installé sur votre machine.
 
-### `npm run build`
+### Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Cloner le dépôt**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/votre-utilisateur/runtrackReact.git
+   cd runtrackReact/autocompletion
+   ```
+2. **Installer les dépendances**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm install
+   ```
+3. **Lancer le serveur de développement**
 
-### `npm run eject`
+   ```bash
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   L'application sera accessible sur `http://localhost:3000`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📁 Structure du Projet (Principaux éléments)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```text
+src/
+├── components/
+│   ├── Header.js          # En-tête global incluant la barre de recherche
+│   └── SearchBar.js       # Composant complexe gérant la logique d'autocomplétion
+├── pages/
+│   ├── Home.js            # Page d'accueil centrée style "Moteur de recherche"
+│   ├── SearchResults.js   # Grille de résultats après validation d'une requête
+│   └── RecipeDetail.js    # Fiche complète d'une recette (ingrédients, instructions)
+├── App.js                 # Configuration du routage
+└── index.js               # Point d'entrée de l'application
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🧠 Concepts Techniques Abordés
 
-## Learn More
+- **Manipulation des tableaux JS** : Utilisation de `.filter()`, `.startsWith()`, `.includes()`, et `.slice()` pour diviser et ordonner les résultats de l'autocomplétion.
+- **Gestion du Cycle de Vie** : Utilisation de `useEffect` pour déclencher les appels asynchrones à l'API TheMealDB en fonction des modifications de la valeur d'entrée.
+- **Événements Clavier** : Écoute du `onKeyDown` pour améliorer l'accessibilité du formulaire sans l'usage de la souris.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Projet réalisé dans le cadre de la formation Développeur Web et Web Mobile à La Plateforme_.*

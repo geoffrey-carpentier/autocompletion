@@ -1,44 +1,26 @@
-/*
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;            */
-
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
+// Importation du Header
+import Header from './components/Header';
 // Importation de nos pages
 import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
 import RecipeDetail from './pages/RecipeDetail';
 
+/**
+ * Root React component that provides the application's global layout and client-side routing.
+ * @returns {JSX.Element} The app's JSX element containing a BrowserRouter with a global Header and configured Routes for "/", "/search", and "/recipe/:id".
+ */
 function App() {
   return (
     // BrowserRouter englobe toute l'application pour activer le routage
     <BrowserRouter>
       <div className="App">
+        {/* Header global (masqué sur la page d'accueil) */}
+        <Header />
+        
         {/* Routes agit comme un "switch" : il affiche le premier composant qui correspond à l'URL */}
         <Routes>
           {/* Route pour la page d'accueil (chemin racine "/") */}
