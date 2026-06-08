@@ -1,34 +1,9 @@
-/*
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;            */
-
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
+// Importation du Header
+import Header from './components/Header';
 // Importation de nos pages
 import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
@@ -39,6 +14,9 @@ function App() {
     // BrowserRouter englobe toute l'application pour activer le routage
     <BrowserRouter>
       <div className="App">
+        {/* Header global (masqué sur la page d'accueil) */}
+        <Header />
+        
         {/* Routes agit comme un "switch" : il affiche le premier composant qui correspond à l'URL */}
         <Routes>
           {/* Route pour la page d'accueil (chemin racine "/") */}
