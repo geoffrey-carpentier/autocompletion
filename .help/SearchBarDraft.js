@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
 
+/**
+ * Render a search bar that provides debounced autocomplete suggestions from TheMealDB and navigates to search results.
+ *
+ * The component maintains the current input, shows a dropdown of up to 5 suggestions that either start with or contain the query (two separate groups), debounces network requests by 300ms, and navigates to `/search?q=...` on form submit or when a suggestion is chosen. The suggestions dropdown is hidden for short queries and dismissed on blur.
+ *
+ * @returns {JSX.Element} The SearchBar UI element.
+ */
 export default function SearchBar() {
     const [term, setTerm] = useState('');
     // État pour stocker les suggestions triées (startsWith et contains)
