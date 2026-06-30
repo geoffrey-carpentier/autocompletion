@@ -4,6 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './RecipeDetail.css';
 
+/**
+ * Display the details of a meal by fetching data from TheMealDB using the `id` route parameter.
+ *
+ * Fetches recipe data, manages loading and error states, extracts ingredient/measure pairs, and renders
+ * a back button, image/title/tags, ingredients list, and instructions.
+ *
+ * @returns {JSX.Element} The recipe detail page element; renders loading or error messages when appropriate.
+ */
 export default function RecipeDetail() {
   const { id } = useParams(); // Récupère l'ID depuis l'URL (ex: 52772)
   const navigate = useNavigate(); // Pour le bouton "Retour"

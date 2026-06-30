@@ -3,6 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar'; // On importe la barre
 import './Header.css';
 
+/**
+ * Render the site header containing a home-linked logo and a SearchBar, except on the root route.
+ *
+ * @returns {JSX.Element|null} The header element with logo and search when not on "/", or `null` on the home page.
+ */
 export default function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
