@@ -13,7 +13,7 @@
   transition: box-shadow 0.3s;
   z-index: 10;
   position: relative;
-  /*overflow: hidden; */
+  /* overflow: hidden; */
   /* Pas d'overflow hidden global sinon l'ombre peut être coupée, 
      mais on gère les enfants pour qu'ils ne dépassent pas */
 }
