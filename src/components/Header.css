@@ -37,16 +37,18 @@
   max-width: 600px; /* Limite la largeur de la barre dans le header */
 }
 
-/* Responsive : sur mobile, on empile ou on réduit */
+/* Responsive : sur mobile, on garde une seule ligne pour limiter la hauteur du header sticky */
 @media (max-width: 600px) {
   .header-content {
-    flex-direction: column;
-    gap: 15px;
+    gap: 12px;
   }
   .logo-link {
-    display: none; /* Hide logo on small screens */
+    font-size: 1.1rem;
+     flex-shrink: 0;
   }
   .header-search {
-    width: 100%;
+     flex: 1;
+     width: auto;
+     min-width: 0;
   }
 }
