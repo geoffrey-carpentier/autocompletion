@@ -67,6 +67,9 @@ export default function SearchBar() {
         const response = await fetch(
           `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(term)}`
         );
+        if (!response.ok) {
+          throw new Error(`Autocomplete request failed with status ${response.status}`);
+        }
         const data = await response.json();
         // On trie les résultats reçus
         setSuggestions(filterSuggestions(data.meals, term));
