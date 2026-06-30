@@ -50,7 +50,9 @@ export default function SearchBar() {
         // Le DEBOUNCE : On déclenche un timer de 300ms
         const timer = setTimeout(async () => {
             try {
-                const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`);
+                const response = await fetch(
++                    `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(term)}`
++                );
                 const data = await response.json();
 
                 // On trie les résultats reçus
@@ -74,7 +76,7 @@ export default function SearchBar() {
         e.preventDefault();
         if (term.trim()) { //
             setShowSuggestions(false); // On cache les suggestions
-            navigate(`/search?q=${term}`);
+            navigate(`/search?q=${encodeURIComponent(term.trim())}`);
         }
     };
 
@@ -82,7 +84,7 @@ export default function SearchBar() {
     const handleSuggestionClick = (mealName) => {
         setTerm(mealName); // Met le nom complet dans l'input
         setShowSuggestions(false); // Cache la liste
-        navigate(`/search?q=${mealName}`); // Lance la recherche
+        navigate(`/search?q=${encodeURIComponent(mealName)}`); // Lance la recherche
     };
 
     return (
