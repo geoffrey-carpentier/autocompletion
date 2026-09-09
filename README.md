@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Autocompletion
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Note** : Ce projet a été réalisé dans le cadre de ma formation de Développeur Web et Web Mobile (DWWM) au sein de La Plateforme.
 
-## Available Scripts
+Le sujet demandait une barre de recherche avec autocomplétion, dans une stack imposée PHP/MySQL/jQuery. Le développement du projet a d'abord démarré en React, avant de repartir sur la stack imposée par le sujet. Les deux versions sont conservées dans ce dépôt :
 
-In the project directory, you can run:
+- [`php-mysql-jquery/`](php-mysql-jquery) : la version conforme au sujet (PHP, MySQL, jQuery), thème Pokémon.
+- [`src/`](src) (racine du dépôt) : la version React développée initialement, thème recettes de cuisine, basée sur l'API publique TheMealDB.
 
-### `npm start`
+## Version PHP / MySQL / jQuery (conforme au sujet)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Voir [`php-mysql-jquery/`](php-mysql-jquery).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Base de données `autocompletion`, table `pokemons` (28 entrées).
+- Pages `index.php`, `recherche.php?search=`, `element.php?id=`.
+- Barre de recherche jQuery interrogeant `autocomplete.php` en AJAX, résultats répartis en deux groupes (commence par / contient), avec une séparation visuelle entre les deux.
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Importer `php-mysql-jquery/database/autocompletion.sql` dans votre serveur MySQL.
+2. Configurer l'accès à la base si besoin via les variables d'environnement `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS` (valeurs par défaut : `localhost`, `3306`, `autocompletion`, `root`, vide).
+3. Servir le dossier `php-mysql-jquery/` avec un serveur PHP (Apache/Nginx, ou en local `php -S localhost:8000` depuis ce dossier).
 
-### `npm run build`
+## Version React (recherche de recettes)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Application de recherche de recettes de cuisine basée sur l'API publique TheMealDB, avec autocomplétion divisée en deux groupes (recettes commençant par la saisie, puis recettes la contenant), navigation au clavier, et pages de détail par recette.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Stack technique
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React 19 (Create React App)
+- React Router DOM
+- Fetch API native
+- API distante : [TheMealDB](https://www.themealdb.com/api.php)
 
-### `npm run eject`
+### Installation et lancement local
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+L'application est accessible sur `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```text
+src/
+├── components/
+│   ├── Header.js          En-tete global incluant la barre de recherche
+│   └── SearchBar.js       Logique d'autocompletion (debounce, groupes, navigation clavier)
+├── pages/
+│   ├── Home.js            Page d'accueil
+│   ├── SearchResults.js   Grille de resultats
+│   └── RecipeDetail.js    Fiche detaillee d'une recette
+├── App.js                 Configuration du routage
+└── index.js               Point d'entree
+```
 
-## Learn More
+## Lien du dépôt
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://github.com/geoffrey-carpentier/autocompletion

@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f5f7;
+    color: #222;
+}
+
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 32px;
+    background-color: #2d3142;
+}
+
+.logo {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.search-wrapper {
+    position: relative;
+    flex: 1;
+    max-width: 420px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+}
+
+.suggestions {
+    display: none;
+    position: absolute;
+    top: 42px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.suggestion-item {
+    display: block;
+    padding: 8px 14px;
+    color: #222;
+    text-decoration: none;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+.suggestion-separator {
+    height: 1px;
+    background-color: #ddd;
+    margin: 4px 0;
+}
+
+.github-link {
+    color: #cfd2dc;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.github-link:hover {
+    color: #fff;
+}
+
+.home {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.home-title {
+    font-size: 3rem;
+    margin-bottom: 8px;
+}
+
+.home-subtitle {
+    color: #555;
+}
+
+.results,
+.element {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.results-list {
+    list-style: none;
+    padding: 0;
+}
+
+.results-item a {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 18px;
+    margin-bottom: 8px;
+    background-color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #222;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.results-item a:hover {
+    background-color: #eef1ff;
+}
+
+.results-type {
+    color: #666;
+}
+
+.element-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.element-number {
+    color: #888;
+    margin: 0;
+}
+
+.element-name {
+    margin: 4px 0 8px;
+}
+
+.element-type {
+    display: inline-block;
+    background-color: #2d3142;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+.empty {
+    color: #666;
+}

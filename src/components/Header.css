@@ -1,0 +1,52 @@
+/* Styles pour le Header  */
+
+.app-header {
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ebebeb;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px; /* Espace entre logo et barre */
+}
+
+.logo-link {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: nowrap; /* Empêche le logo de passer à la ligne */
+}
+
+.blue {
+  color: #4285f4;
+}
+.orange {
+  color: #fbbc05;
+}
+
+.header-search {
+  flex-grow: 1;
+  max-width: 600px; /* Limite la largeur de la barre dans le header */
+}
+
+/* Responsive : sur mobile, on empile ou on réduit */
+@media (max-width: 600px) {
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .logo-link {
+    display: none; /* Hide logo on small screens */
+  }
+  .header-search {
+    width: 100%;
+  }
+}
